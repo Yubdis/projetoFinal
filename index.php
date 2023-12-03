@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+$seguranca = isset($_SESSION['ativa']) ? TRUE : header("location: paginaLogin.php");
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +9,7 @@
 </head>
 
 <body>
-	<?php if (isset($_SESSION['ativa'])) { ?>
+	<?php if ($seguranca) { ?>
 		<div class="admin">
 			<p>
 				<a href="admin.php">Início</a> -

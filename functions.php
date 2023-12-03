@@ -27,6 +27,17 @@ function login($connect)
 		}
 	}
 }
+// funcao logout
+function logout()
+{
+	session_start();
+	//Limpar os caches da sessão
+	session_unset();
+	//Encerra / fecha a sessão
+	session_destroy();
+	header("location: paginaLogin.php");
+}
+
 //função para inserir usuários
 function insertUser($connect)
 {
