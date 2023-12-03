@@ -55,7 +55,7 @@ function buscar($connect, $tabela, $where = 1, $order = "")
 	}
 	$query = "SELECT * FROM $tabela WHERE $where $order";
 	$executar = mysqli_query($connect, $query);
-	$results = mysqli_fetch_assoc($executar, MYSQLI_ASSOC);
+	$results = mysqli_fetch_all($executar, MYSQLI_ASSOC);
 	return $results;
 }
 //função para inserir usuários

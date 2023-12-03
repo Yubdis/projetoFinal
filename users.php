@@ -1,6 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
 $seguranca = isset($_SESSION['ativa']) ? TRUE : header("location: paginaLogin.php");
-<?php require_once "function.php"; ?>
+require_once "functions.php"; ?>
 <!DOCTYPE html>
 <html>
 
@@ -35,7 +35,7 @@ $seguranca = isset($_SESSION['ativa']) ? TRUE : header("location: paginaLogin.ph
 
 
 		<div>
-			<table>
+			<table border="1">
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -50,7 +50,7 @@ $seguranca = isset($_SESSION['ativa']) ? TRUE : header("location: paginaLogin.ph
 							<td><?php echo $usuario['id']; ?></td>
 							<td><?php echo $usuario['nome']; ?></td>
 							<td><?php echo $usuario['email']; ?></td>
-							<td><?php echo $usuario['dadta_cadastro']; ?></td>
+							<td><?php echo $usuario['data_cadastro']; ?></td>
 						</tr>
 
 					<?php endforeach; ?>
