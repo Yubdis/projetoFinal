@@ -10,4 +10,4 @@ logout();
 // //Redirecionamento de página com PHP
 // header("location: index.php");
 
-// //echo "Você foi desconectado com sucesso.";
+// //echo "Você foi desconectado com sucesso."; 

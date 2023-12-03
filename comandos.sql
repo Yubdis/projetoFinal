@@ -1,6 +1,5 @@
-/*
 CRUD
-Creat - INSERT
+Create - INSERT
 Read - SELECT
 Update - Update
 Delete - Delete

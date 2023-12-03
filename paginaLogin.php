@@ -4,7 +4,6 @@ if (isset($_POST['acessar'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +17,7 @@ if (isset($_POST['acessar'])) {
     <h2>login</h2>
     <form method="post" action="">
       <div class="user-box">
-        <input type="text" name="email" placeholder="Email" required>
+        <input type="email" name="email" placeholder="Email" required>
         <label></label>
       </div>
       <div class="user-box">
@@ -32,8 +31,9 @@ if (isset($_POST['acessar'])) {
         <span></span>
         submit
       </a>
-      <button type="submit" name="acessar">test</button>
+      <input type="submit" name="acessar" value="Acessar"></input>
     </form>
+
   </div>
 </body>
 

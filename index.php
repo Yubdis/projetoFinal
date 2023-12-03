@@ -4,27 +4,26 @@ $seguranca = isset($_SESSION['ativa']) ? TRUE : header("location: paginaLogin.ph
 <html>
 
 <head>
-	<title>Bem vindo ao painel administrativo</title>
+	<title>Painel Admin</title>
 	<link rel="stylesheet" type="text/css" href="css/admin.css">
 </head>
 
 <body>
 	<?php if ($seguranca) { ?>
 		<div class="admin">
-			<p>
-				<a href="admin.php">Início</a> -
-				<a href="usuarios.php">Usuários</a>
-			</p>
-			<h1>
-				Bem vindo <?php echo $_SESSION['nome']; ?> ao painel do site!
-			</h1>
-			<p>
-				Aqui você tem acesso a administração do seu sistema...
-			</p>
 
-			<a class="sair" href="deslogar.php"> Sair </a>
+			<h1>Painel Adminstrativa do site</h1>
+			<h2>Bem vindo <?php echo $_SESSION['nome']; ?> ao painel do site!</h2>
+			<p>Aqui você tem acesso a administração do seu sistema...</p>
 
 		</div>
+		<nav>
+			<div>
+				<a href="index.php">Painel</a>
+				<a href="users.php">Gerenciar Usuarios</a>
+				<a href="deslogar.php">Sair</a>
+			</div>
+		</nav>
 	<?php } else {
 		header("location: paginaLogin.php");
 	} ?>
