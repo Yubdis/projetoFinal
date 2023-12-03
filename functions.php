@@ -8,6 +8,7 @@ $connect = mysqli_connect($server, $userDb, $passDb, $database);
 //funcao para login
 function login($connect)
 {
+
 	if (isset($_POST['acessar']) and !empty($_POST['email']) and !empty($_POST['senha'])) {
 		$email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
 		$senha = sha1($_POST['senha']);
@@ -16,12 +17,12 @@ function login($connect)
 		$return = mysqli_fetch_assoc($executar);
 
 		if (!empty($return['email'])) {
-			echo "Bem vindo " . $return['nome'];
 			session_start();
 			$_SESSION['nome'] = $return['nome'];
 			$_SESSION['id'] = $return['id'];
 			$_SESSION['ativa'] = TRUE;
 			header("location: index.php");
+			exit;
 		} else {
 			echo "Usuario ou senha nao encontrado!";
 		}

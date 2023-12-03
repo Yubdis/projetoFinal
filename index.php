@@ -1,5 +1,6 @@
-<?php session_start(); ?>
+<?php session_start();
 $seguranca = isset($_SESSION['ativa']) ? TRUE : header("location: paginaLogin.php");
+?>
 <!DOCTYPE html>
 <html>
 

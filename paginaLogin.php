@@ -1,4 +1,5 @@
-<?php require_once "functions.php";
+<?php
+require_once "functions.php";
 if (isset($_POST['acessar'])) {
   login($connect);
 }
@@ -31,7 +32,7 @@ if (isset($_POST['acessar'])) {
         <span></span>
         submit
       </a>
-      <input type="submit" name="acessar" value="Acessar"></input>
+      <button type="submit" name="acessar">Acessar</button>
     </form>
 
   </div>
