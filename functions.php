@@ -91,29 +91,19 @@ function insertUser($connect)
 				echo "<p>$erro</p>";
 			}
 		}
-
-
-		// if (!empty($nome) and !empty($email) and !empty($senha)) {
-		// 	$senha = sha1($senha);
-		// 	$query = "INSERT INTO users (nome, email, senha, mensagem, data_cadastro) VALUES ( '$nome', '$email', '$senha', '$mensagem', NOW() ) ";
-		// 	$execute = mysqli_query($connect, $query);
-		// 	if ($execute) {
-		// 		echo "Usuário inserido com sucesso!";
-		// 	} else {
-		// 		echo "Erro ao inserir dado!";
-		// 	}
-		// } else {
-		// 	echo "Preencha todos os dados corretamente!";
-		// }
 	}
 }
 
-function selectDados($connect, $tabela, $where = "1")
+// Deletar algum dado
+function deletar($connect, $tabela, $id)
 {
-	$query = "SELECT * FROM $tabela WHERE $where ";
-	$execute = mysqli_query($connect, $query);
-	//Trás os dados do SELECT do banco
-	//MYSQLI_NUM - MYSQLI_BOTH - MYSQLI_ASSOC
-	$result = mysqli_fetch_all($execute, MYSQLI_ASSOC);
-	return $result;
+	if (!empty($id)) {
+		$query = "DELETE FROM $tabela WHERE id =" . (int) $id;
+		$executar = mysqli_query($connect, $query);
+		if ($executar) {
+			echo "Dado Deletado com Sucesso!";
+		} else {
+			echo "Erro ao deletar!";
+		}
+	}
 }

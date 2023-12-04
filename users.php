@@ -27,12 +27,28 @@ require_once "functions.php"; ?>
 			</div>
 		</nav>
 
-	<?php
+		<?php
 		$tabela = "users";
 		$order = "nome";
 		$usuarios = buscar($connect, $tabela, 1, $order);
 		insertUser($connect);
-	?>
+		// deletar($connect, $tabela, $id);
+		if (isset($_GET['id'])) { ?>
+			<h2>Ter certeza que deseja deletar o usuario <?php echo $_GET['nome']; ?></h2>
+			<form action="" method="post">
+				<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+				<input type="submit" name="deletar" value="Deletar">
+			</form>
+		<?php } ?>
+		<?php
+		if (isset($_POST['deletar'])) {
+			if ($_SESSION['id'] != $_POST['id']) {
+				deletar($connect, "users", $_POST['id']);
+			} else {
+				echo "Cara! Voce nao pode delater seu proprio usuario";
+			}
+		}
+		?>
 
 		<form action="" method="post">
 			<fieldset>
@@ -54,6 +70,7 @@ require_once "functions.php"; ?>
 						<th>nome</th>
 						<th>email</th>
 						<th>data cadastro</th>
+						<th>Acoes</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -63,6 +80,9 @@ require_once "functions.php"; ?>
 							<td><?php echo $usuario['nome']; ?></td>
 							<td><?php echo $usuario['email']; ?></td>
 							<td><?php echo $usuario['data_cadastro']; ?></td>
+							<td>
+								<a href="users.php?id=<?php echo $usuario['id']; ?>&nome=<?php echo $usuario['nome']; ?>">Excluir</a>
+							</td>
 						</tr>
 
 					<?php endforeach; ?>
