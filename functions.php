@@ -61,24 +61,50 @@ function buscar($connect, $tabela, $where = 1, $order = "")
 //função para inserir usuários
 function insertUser($connect)
 {
-	if (isset($_POST['submit'])) {
-		$nome = mysqli_real_escape_string($connect, $_POST['nome']);
+	if (isset($_POST['cadastrar']) and !empty($_POST['email']) and !empty($_POST['senha'])) {
+		$erros = array();
 		$email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
-		$senha = mysqli_real_escape_string($connect, $_POST['senha']);
-		$mensagem = mysqli_real_escape_string($connect, $_POST['mensagem']);
+		$nome = mysqli_real_escape_string($connect, $_POST['nome']);
+		$senha = sha1($_POST['senha']);
 
-		if (!empty($nome) and !empty($email) and !empty($senha)) {
-			$senha = sha1($senha);
-			$query = "INSERT INTO users (nome, email, senha, mensagem, data_cadastro) VALUES ( '$nome', '$email', '$senha', '$mensagem', NOW() ) ";
-			$execute = mysqli_query($connect, $query);
-			if ($execute) {
-				echo "Usuário inserido com sucesso!";
+		if ($_POST['senha'] != $_POST['repetesenha']) {
+			$erros[] = "Senhas nao conferem!";
+		}
+		$queryEmail = "SELECT email FROM users WHERE email = '$email' ";
+		$buscaEmail = mysqli_query($connect, $queryEmail);
+		$verifica = mysqli_num_rows($buscaEmail);
+
+		if (!empty($verifica)) {
+			$erros[] = "E-mail ja cadastrado";
+		}
+		if (empty($erros)) {
+			// inserir usuario no BD
+			$query = "INSERT INTO users (nome, email, senha, data_cadastro) VALUES ( '$nome', '$email', '$senha', NOW() ) ";
+			$executar = mysqli_query($connect, $query);
+			if ($executar) {
+				echo "Usuario Inserido com Sucesso!";
 			} else {
-				echo "Erro ao inserir dado!";
+				echo "Erro ao inserir Usuario!";
 			}
 		} else {
-			echo "Preencha todos os dados corretamente!";
+			foreach ($erros as $erro) {
+				echo "<p>$erro</p>";
+			}
 		}
+
+
+		// if (!empty($nome) and !empty($email) and !empty($senha)) {
+		// 	$senha = sha1($senha);
+		// 	$query = "INSERT INTO users (nome, email, senha, mensagem, data_cadastro) VALUES ( '$nome', '$email', '$senha', '$mensagem', NOW() ) ";
+		// 	$execute = mysqli_query($connect, $query);
+		// 	if ($execute) {
+		// 		echo "Usuário inserido com sucesso!";
+		// 	} else {
+		// 		echo "Erro ao inserir dado!";
+		// 	}
+		// } else {
+		// 	echo "Preencha todos os dados corretamente!";
+		// }
 	}
 }
 

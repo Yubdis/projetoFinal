@@ -27,12 +27,24 @@ require_once "functions.php"; ?>
 			</div>
 		</nav>
 
-		<?php
+	<?php
 		$tabela = "users";
 		$order = "nome";
 		$usuarios = buscar($connect, $tabela, 1, $order);
-		?>
+		insertUser($connect);
+	?>
 
+		<form action="" method="post">
+			<fieldset>
+				<legend>Inserir Usuarios</legend>
+				<input type="text" name="nome" placeholder="Nome">
+				<input type="email" name="email" placeholder="Email">
+				<input type="password" name="senha" placeholder="Senha">
+				<input type="password" name="repetesenha" placeholder="Confirme sua Senha">
+				<input type="submit" name="cadastrar" value="Cadastrar">
+
+			</fieldset>
+		</form>
 
 		<div>
 			<table border="1">
