@@ -10,7 +10,7 @@ if (isset($_POST['acessar'])) {
 
 <head>
   <title>Pagina De Login</title>
-  <link rel="stylesheet" href="css/paginaLogin.css" />
+  <link rel="stylesheet" href="/projetoFinal/css/paginaLogin.css" />
 </head>
 
 <body>

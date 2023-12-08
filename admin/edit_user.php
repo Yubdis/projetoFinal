@@ -19,13 +19,7 @@ require_once "functions.php"; ?>
 
 		</div>
 
-		<nav>
-			<div>
-				<a href="index.php">Painel</a>
-				<a href="users.php">Gerenciar Usuarios</a>
-				<a href="deslogar.php">Sair</a>
-			</div>
-		</nav>
+		<?php include "<layout/menu.php"; ?>
 
 		<?php
 		$tabela = "users";
