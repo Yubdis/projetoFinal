@@ -1,3 +1,6 @@
+<?php require_once "functions.php"; ?>
+Pagina de contato - HTML
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,14 +8,13 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>paginaSuporte</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>Formulário de Contato</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
-<h1>Formulário de Contato</h1>
-
+  <h1>Formulário de Contato</h1>
+  <?php insertUser($connect); ?>
   <form action="https://formsubmit.co/your@email.com" method="POST" class="form">
     <label for="nome">Nome</label>
     <input type="text" name="nome" id="nome" required />
