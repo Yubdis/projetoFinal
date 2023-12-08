@@ -82,6 +82,7 @@ require_once "functions.php"; ?>
 							<td><?php echo $usuario['data_cadastro']; ?></td>
 							<td>
 								<a href="users.php?id=<?php echo $usuario['id']; ?>&nome=<?php echo $usuario['nome']; ?>">Excluir</a>
+								<a href="edit_user.php?id=<?php echo $usuario['id']; ?>&nome=<?php echo $usuario['nome']; ?>">Editar</a>
 							</td>
 						</tr>
 

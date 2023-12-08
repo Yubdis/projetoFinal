@@ -107,3 +107,65 @@ function deletar($connect, $tabela, $id)
 		}
 	}
 }
+
+function updateUser($connect)
+{
+	if (isset($_POST['atualizar']) and !empty($_POST['email'])) {
+		$erros = array();
+		$id = filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
+		$email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+		$nome = mysqli_real_escape_string($connect, $_POST['nome']);
+		$senha = "";
+		$data = mysqli_real_escape_string($connect, $_POST['data_cadastro']);
+
+		if (empty($data)) {
+			$erros[] = "Preencha a data de cadastro";
+		}
+		if (empty($email)) {
+			$erros[] = "Preencha seu e-mail corretament";
+		}
+		if (strlen($nome) < 4) {
+			$erros[] = "Preencha seu completo";
+		}
+		if (!empty($_POST['senha'])) {
+			if ($_POST['senha'] == $_POST['repetesenha']) {
+				$senha = sha1($_POST['senha']);
+			} else {
+				$erros[] = "Senhas nao conferem!";
+			}
+		}
+		if ($_POST['senha'] != $_POST['repetesenha']) {
+			$erros[] = "Senhas nao conferem!";
+		}
+		$queryEmailAtual = "SELECT email FROM users WHERE id = $id";
+		$buscaEmailAtual = mysqli_query($connect, $queryEmailAtual);
+		$returnEmail = mysqli_fetch_assoc($buscaEmailAtual);
+		$queryEmail = "SELECT email FROM users WHERE email = '$email' AND email <> '" . $returnEmail['email'] . "'";
+		$buscaEmail = mysqli_query($connect, $queryEmail);
+		$verifica = mysqli_num_rows($buscaEmail);
+
+		if (!empty($verifica)) {
+			$erros[] = "E-mail ja cadastrado";
+		}
+		if (empty($erros)) {
+			// UPDATE usuario
+			if (!empty($senha)) {
+				$query = "UPDATE users SET nome = '$nome', email = '$email', senha = '$senha', data_cadastro = '$data'
+					WHERE id = " . (int)$id;
+			} else {
+				$query = "UPDATE users SET nome = '$nome', email = '$email', data_cadastro = '$data'
+					WHERE id = " . (int)$id;
+			}
+			$executar = mysqli_query($connect, $query);
+			if ($executar) {
+				echo "Usuario Atualizar com Sucesso!";
+			} else {
+				echo "Erro ao atualizar usuario!";
+			}
+		} else {
+			foreach ($erros as $erro) {
+				echo "<p>$erro</p>";
+			}
+		}
+	}
+}
