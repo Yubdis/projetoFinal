@@ -19,7 +19,7 @@ require_once "functions.php"; ?>
 
 		</div>
 
-		<?php include "<layout/menu.php"; ?>
+		<?php include "<layout/menu.php"; ?> 
 
 		<?php
 		$tabela = "users";
