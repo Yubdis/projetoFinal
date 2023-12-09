@@ -53,6 +53,11 @@ if (isset($_POST['update'])) {
 			<fieldset>
 				<legend>Inserir Item do Cardapio</legend>
 				<input value="<?php echo $id; ?>" type="hidden" name="id" required>
+
+				<?php if (!empty($itemCardapio['imagem'])) { ?>
+					<img width="80px" src="imagens/uploads/<?php echo $itemCardapio['imagem']; ?>">
+				<?php } ?>
+
 				<div>
 					<input type="file" name="imagem">
 				</div>
@@ -63,7 +68,7 @@ if (isset($_POST['update'])) {
 					<textarea name="descricao" required><?php echo $descricao; ?></textarea>
 				</div>
 				<div>
-					<input value="<?php echo $data_registro; ?>" type="date" name="data_registro" required>
+					<input value="<?php echo $data; ?>" type="date" name="data_registro" required>
 				</div>
 				<input type="submit" name="<?php echo $action; ?>" value="Salvar">
 			</fieldset>

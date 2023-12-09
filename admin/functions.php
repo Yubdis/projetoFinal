@@ -177,6 +177,7 @@ function insertCardapio($connect)
 		$descricao = mysqli_real_escape_string($connect, $_POST['descricao']);
 		$data = mysqli_real_escape_string($connect, $_POST['data_registro']);
 		$imagem = !empty($_FILES['imagem']['name']) ? $_FILES['imagem']['name'] : "";
+		$retornoUpload = "";
 		if (!empty($imagem)) {
 			$caminho = "imagens/uploads/";
 			$retornoUpload = uploadImage($caminho);
@@ -211,14 +212,40 @@ function updateCardapio($connect)
 		$titulo = mysqli_real_escape_string($connect, $_POST['titulo']);
 		$descricao = mysqli_real_escape_string($connect, $_POST['descricao']);
 		$data = mysqli_real_escape_string($connect, $_POST['data_registro']);
-		$imagem = "";
+
+		$imagem = !empty($_FILES['imagem']['name']) ? $_FILES['imagem']['name'] : "";
+		$retornoUpload = "";
+		if (!empty($imagem)) {
+			$caminho = "imagens/uploads/";
+			$retornoUpload = uploadImage($caminho);
+			if (is_array($retornoUpload)) {
+				foreach ($retornoUpload as $erro) {
+					echo $erro;
+				}
+				$imagem = "";
+			} else {
+				$imagem = $retornoUpload;
+			}
+		}
 		if (!empty($id)) {
-			$query = "UPDATE cardapio SET titulo = '$titulo', descricao = '$descricao',
+			if (!empty($imagem)) {
+				$query = "UPDATE cardapio SET imagem = '$imagem', titulo = '$titulo', descricao = '$descricao',
 				data_registro = '$data' WHERE id = $id";
+			} else {
+				$query = "UPDATE cardapio SET titulo = '$titulo', descricao = '$descricao',
+					data_registro = '$data' WHERE id = $id";
+			}
+
+
 			$executar = mysqli_query($connect, $query);
 			if ($executar) {
+				if (is_array($retornoUpload)) {
+					echo "Item atualizado com sucesso! Porem a imagem nao pode ser inserida!";
+				} else {
+					header("location: cardapio.php");
+				}
 			} else {
-				echo "Erro ao atualizar Usuario!";
+				echo "Erro ao inserir Usuario!";
 			}
 		}
 	}
