@@ -3,6 +3,9 @@ $seguranca = isset($_SESSION['ativa']) ? TRUE : header("location: paginaLogin.ph
 require_once "functions.php";
 // inserir item
 insertCardapio($connect);
+if (isset($_POST['update'])) {
+	updateCardapio($connect);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,16 +33,20 @@ insertCardapio($connect);
 		$descricao = "";
 		$data = date('Y-m-d');
 		$action = "insert";
-
 		?>
+		
 		<?php
-		// if (isset($_GET['id'])) {
-		// $id = $_GET['id'];
-		// $usuario = buscaUnica($connect, "users", $id);
-		// updateUser($connect);
-		?>
-
-		<?php //}
+		if (isset($_GET['id'])) {
+			$idGet = $_GET['id'];
+			$itemCardapio = buscaUnica($connect, "cardapio", $idGet);
+			if (!empty($itemCardapio['titulo'])) {
+				$id = $itemCardapio['id'];
+				$titulo = $itemCardapio['titulo'];
+				$descricao = $itemCardapio['descricao'];
+				$data = $itemCardapio['data_registro'];
+				$action = "update";
+			}
+		}
 		?>
 
 		<form action="" method="post">

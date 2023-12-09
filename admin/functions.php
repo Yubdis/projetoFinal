@@ -187,3 +187,23 @@ function insertCardapio($connect)
 		}
 	}
 }
+function updateCardapio($connect)
+{
+	if (isset($_POST['update']) and !empty($_POST['titulo']) and !empty($_POST['descricao'])) {
+		$id = (int)$_POST['id'];
+		$titulo = mysqli_real_escape_string($connect, $_POST['titulo']);
+		$descricao = mysqli_real_escape_string($connect, $_POST['descricao']);
+		$data = mysqli_real_escape_string($connect, $_POST['data_registro']);
+		$imagem = "";
+		if (!empty($id)) {
+			$query = "UPDATE cardapio SET titulo = '$titulo', descricao = '$descricao',
+				data_registro = '$data' WHERE id = $id";
+			$executar = mysqli_query($connect, $query);
+			if ($executar) {
+				
+			} else {
+				echo "Erro ao atualizar Usuario!";
+			}
+		}
+	}
+}

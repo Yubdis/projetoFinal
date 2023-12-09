@@ -55,8 +55,10 @@ require_once "functions.php"; ?>
 						<td><?php echo $cardapio['titulo']; ?></td>
 						<td><?php echo $cardapio['data_registro']; ?></td>
 						<td>
-							<a href="cardapio.php?id=<?php echo $cardapio['id']; ?>&titulo=<?php echo $cardapio['titulo']; ?>">Excluir</a>
-							<a href="edit_user.php?id=<?php echo $cardapio['id']; ?>&titulo=<?php echo $cardapio['titulo']; ?>">Editar</a>
+							<a href="cardapio.php?id=<?php echo $cardapio['id'];
+							?>&titulo=<?php echo $cardapio['titulo']; ?>">Excluir</a>
+							<a href="form_cardapio.php?id=<?php echo $cardapio['id'];
+							?>&titulo=<?php echo $cardapio['titulo']; ?>">Editar</a>
 
 						</td>
 					</tr>
