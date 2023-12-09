@@ -34,7 +34,7 @@ if (isset($_POST['update'])) {
 		$data = date('Y-m-d');
 		$action = "insert";
 		?>
-		
+
 		<?php
 		if (isset($_GET['id'])) {
 			$idGet = $_GET['id'];
@@ -60,7 +60,7 @@ if (isset($_POST['update'])) {
 					<input value="<?php echo $titulo; ?>" type="text" name="titulo" placeholder="Titulo" required>
 				</div>
 				<div>
-					<textarea name="descricao" required></textarea>
+					<textarea name="descricao" required><?php echo $descricao; ?></textarea>
 				</div>
 				<div>
 					<input value="<?php echo $data_registro; ?>" type="date" name="data_registro" required>
