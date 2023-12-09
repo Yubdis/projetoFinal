@@ -13,7 +13,7 @@ Pagina de contato - HTML
 </head>
 
 <body>
-	<h1>Formulário de Contato</h1>
+	<h1>Website de aulas</h1>
 	<?php insertUser($connect); ?>
 	<form action="https://formsubmit.co/your@email.com" method="POST" class="form">
 		<label for="nome">Nome</label>

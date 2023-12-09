@@ -169,3 +169,21 @@ function updateUser($connect)
 		}
 	}
 }
+function insertCardapio($connect)
+{
+	if (isset($_POST['insert']) and !empty($_POST['titulo']) and !empty($_POST['descricao'])) {
+
+		$titulo = mysqli_real_escape_string($connect, $_POST['titulo']);
+		$descricao = mysqli_real_escape_string($connect, $_POST['descricao']);
+		$data = mysqli_real_escape_string($connect, $_POST['data_registro']);
+		$imagem = "";
+
+		$query = "INSERT INTO cardapio (titulo, descricao, imagem, data_registro) VALUES ( '$titulo', '$descricao', '$imagem', '$data' ) ";
+		$executar = mysqli_query($connect, $query);
+		if ($executar) {
+			header("location: cardapio.php");
+		} else {
+			echo "Erro ao inserir Usuario!";
+		}
+	}
+}
