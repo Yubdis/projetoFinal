@@ -49,7 +49,7 @@ if (isset($_POST['update'])) {
 		}
 		?>
 
-		<form action="" method="post">
+		<form action="" method="post" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Inserir Item do Cardapio</legend>
 				<input value="<?php echo $id; ?>" type="hidden" name="id" required>

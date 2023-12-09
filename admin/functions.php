@@ -176,12 +176,29 @@ function insertCardapio($connect)
 		$titulo = mysqli_real_escape_string($connect, $_POST['titulo']);
 		$descricao = mysqli_real_escape_string($connect, $_POST['descricao']);
 		$data = mysqli_real_escape_string($connect, $_POST['data_registro']);
-		$imagem = "";
+		$imagem = !empty($_FILES['imagem']['name']) ? $_FILES['imagem']['name'] : "";
+		if (!empty($imagem)) {
+			$caminho = "imagens/uploads/";
+			$retornoUpload = uploadImage($caminho);
+			if (is_array($retornoUpload)) {
+				foreach ($retornoUpload as $erro) {
+					echo $erro;
+				}
+				$imagem = "";
+			} else {
+				$imagem = $retornoUpload;
+			}
+		}
 
-		$query = "INSERT INTO cardapio (titulo, descricao, imagem, data_registro) VALUES ( '$titulo', '$descricao', '$imagem', '$data' ) ";
+		$query = "INSERT INTO cardapio (titulo, descricao, imagem, data_registro)
+			VALUES ( '$titulo', '$descricao', '$imagem', '$data' ) ";
 		$executar = mysqli_query($connect, $query);
 		if ($executar) {
-			header("location: cardapio.php");
+			if (is_array($retornoUpload)) {
+				echo "Item indersido com sucesso! Porem a imagem nao pode ser inserida!";
+			} else {
+				header("location: cardapio.php");
+			}
 		} else {
 			echo "Erro ao inserir Usuario!";
 		}
@@ -200,9 +217,51 @@ function updateCardapio($connect)
 				data_registro = '$data' WHERE id = $id";
 			$executar = mysqli_query($connect, $query);
 			if ($executar) {
-				
 			} else {
 				echo "Erro ao atualizar Usuario!";
+			}
+		}
+	}
+}
+function uploadImage($caminho)
+{
+	if (!empty($_FILES['imagem']['name'])) {
+
+		$nomeImagem = $_FILES['imagem']['name'];
+		$tipo = $_FILES['imagem']['type'];
+		$nomeTemporario = $_FILES['imagem']['tmp_name'];
+		$tamanho = $_FILES['imagem']['size'];
+		$erros = array();
+
+		$tamanhoMaximo = 1024 * 1024 * 5; //5MB
+		if ($tamanho > $tamanhoMaximo) {
+			$erros[] = "Seu arquivo excede o tamanho máximo<br>";
+		}
+
+		$arquivosPermitidos = ["png", "jpg", "jpeg"];
+		$extensao = pathinfo($nomeImagem, PATHINFO_EXTENSION);
+		if (!in_array($extensao, $arquivosPermitidos)) {
+			$erros[] = "Arquivo não permitido.<br>";
+		}
+
+		$typesPermitidos = ["image/png", "image/jpg", "image/jpeg"];
+		if (!in_array($tipo, $typesPermitidos)) {
+			$erros[] = "Tipo de arquivo não permitido.<br>";
+		}
+
+		if (!empty($erros)) {
+			// foreach ($erros as $erro) {
+			// 	echo $erro;
+			// }
+			return $erros;
+		} else {
+
+			$hoje = date("d-m-Y_h-i");
+			$novoNome = $hoje . "-" . $nomeImagem;
+			if (move_uploaded_file($nomeTemporario, $caminho . $novoNome)) {
+				return $novoNome;
+			} else {
+				return FALSE;
 			}
 		}
 	}

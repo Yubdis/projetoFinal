@@ -39,6 +39,9 @@ require_once "functions.php"; ?>
 	?>
 
 	<div>
+		<div>
+			<a href="form_cardapio.php">Inserir novo item</a>
+		</div>
 		<table border="1">
 			<thead>
 				<tr>
@@ -51,14 +54,18 @@ require_once "functions.php"; ?>
 			<tbody>
 				<?php foreach ($cardapios as $cardapio) : ?>
 					<tr>
-						<td><?php echo $cardapio['imagem']; ?></td>
+						<td>
+							<?php if (!empty($cardapio['imagem'])) { ?>
+								<img width="80px" src="imagens/uploads/<?php echo $cardapio['imagem']; ?>" alt="<?php echo $cardapio['titulo']; ?>">
+							<?php } ?>
+						</td>
 						<td><?php echo $cardapio['titulo']; ?></td>
 						<td><?php echo $cardapio['data_registro']; ?></td>
 						<td>
 							<a href="cardapio.php?id=<?php echo $cardapio['id'];
-							?>&titulo=<?php echo $cardapio['titulo']; ?>">Excluir</a>
+																				?>&titulo=<?php echo $cardapio['titulo']; ?>">Excluir</a>
 							<a href="form_cardapio.php?id=<?php echo $cardapio['id'];
-							?>&titulo=<?php echo $cardapio['titulo']; ?>">Editar</a>
+																						?>&titulo=<?php echo $cardapio['titulo']; ?>">Editar</a>
 
 						</td>
 					</tr>
