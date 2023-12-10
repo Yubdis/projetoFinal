@@ -1,5 +1,4 @@
-<?php require_once "functions.php"; ?>
-Pagina de contato - HTML
+<?php require_once "admin/functions.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,19 +12,49 @@ Pagina de contato - HTML
 </head>
 
 <body>
-	<h1>Website de aulas</h1>
-	<?php insertUser($connect); ?>
-	<form action="https://formsubmit.co/your@email.com" method="POST" class="form">
-		<label for="nome">Nome</label>
-		<input type="text" name="nome" id="nome" required />
-		<label for="email">E-mail</label>
-		<input type="email" name="email" id="email" required />
-		<label for="mensagem">Mensagem</label>
-		<textarea name="mensagem" id="mensagem" required></textarea>
-		<input type="hidden" name="_captcha" value="false" />
-		<input type="hidden" name="_next" value="https://yourdomain.co/thanks.html" />
-		<button type="submit" name="submit">Enviar</button>
-	</form>
+
+	<header>
+		<h1>Lesson Hub</h1>
+		<p>Your destination for online lessons</p>
+	</header>
+
+	<section>
+		<div class="container">
+			<h2>Featured Lessons</h2>
+			<div class="cardapio">
+				<?php $cardapio = buscar($connect, "cardapio");
+				foreach ($cardapio as $item) :  ?>
+					<div class="bloco">
+						<div class="imagem">
+							<img width="100px" src="admin/imagens/uploads/<?php echo $item['imagem']; ?>" alt="<?php echo $item['titulo']; ?>">
+						</div>
+						<div class="info-aula">
+							<h3><?php echo $item['titulo']; ?></h3>
+							<p><?php echo $item['descricao']; ?></p>
+						</div>
+					</div>
+				<?php endforeach; ?>
+
+			</div>
+		</div>
+		<p>Explore our curated collection of lessons to enhance your skills.</p>
+	</section>
+
+	<section>
+		<h2>Popular Categories</h2>
+		<!-- Add links to popular lesson categories -->
+		<ul>
+			<li><a href="#">Programming</a></li>
+			<li><a href="#">Language Learning</a></li>
+			<li><a href="#">Music</a></li>
+			<li><a href="#">Science</a></li>
+		</ul>
+	</section>
+
+	<footer>
+		<p>&copy; 2023 Lesson Hub. All rights reserved.</p>
+	</footer>
+
 </body>
 
 </html>
