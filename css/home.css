@@ -1,0 +1,91 @@
+	home.css
+
+  	body {
+  	  font-family: 'Arial', sans-serif;
+  	  margin: 0;
+  	  padding: 0;
+  	  box-sizing: border-box;
+  	  background-color: #002B36;
+  	  color: #fff;
+  	}
+
+  	header {
+  	  background-color: #073642;
+  	  color: #fff;
+  	  text-align: center;
+  	  padding: 20px;
+  	}
+
+    section {
+      text-align: center;
+    }
+  	.container {
+  	  max-width: 800px;
+  	  margin: 0 auto;
+  	  padding: 20px;
+  	}
+    .categories {
+      display: flex;
+      flex-direction: column;
+    }
+
+  	.cardapio {
+  	  display: flex;
+  	  flex-wrap: wrap;
+  	}
+
+  	.bloco {
+  	  margin: 10px;
+  	  border: 1px solid #93A1A1;
+  	  padding: 15px;
+  	  width: calc(33.33% - 20px);
+  	  box-sizing: border-box;
+  	  background-color: #002B36;
+  	}
+
+  	.bloco:hover {
+  	  border-color: #268BD2;
+  	}
+
+  	.imagem img {
+  	  width: 100%;
+  	  height: auto;
+  	  border-radius: 5px;
+  	}
+
+  	.info-aula {
+  	  text-align: center;
+  	}
+
+  	ul {
+  	  list-style: none;
+  	  padding: 0;
+  	}
+
+  	ul li {
+  	  margin-bottom: 10px;
+  	}
+
+    ul li a {
+      text-decoration: none;
+    }
+
+  	footer {
+  	  background-color: #073642;
+  	  color: #fff;
+  	  text-align: center;
+  	  padding: 10px;
+  	  bottom: 0;
+  	}
+
+  	@media (max-width: 768px) {
+  	  .bloco {
+  	    width: calc(50% - 20px);
+  	  }
+  	}
+
+  	@media (max-width: 480px) {
+  	  .bloco {
+  	    width: 100%;
+  	  }
+  	}
