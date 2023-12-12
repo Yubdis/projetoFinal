@@ -25,13 +25,13 @@ if (isset($_POST['acessar'])) {
         <input type="password" name="senha" placeholder="Password" required>
         <label></label>
       </div>
-      <a href="">
+      <!-- <a href="">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         submit
-      </a>
+      </a> -->
       <button type="submit" name="acessar">Acessar</button>
     </form>
 

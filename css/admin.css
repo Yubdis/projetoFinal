@@ -14,9 +14,13 @@ body{
 .container-menu{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
+  margin: .5rem;
+  padding: .5rem;
 }
+
 .container-menu a {
   text-decoration: none;
+
 }
 

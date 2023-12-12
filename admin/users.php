@@ -6,20 +6,23 @@ require_once "functions.php"; ?>
 
 <head>
 	<title>Painel Admin - Usuarios</title>
-	<link rel="stylesheet" type="text/css" href="css/admin.css">
+	<link rel="stylesheet" type="text/css" href="/projetoFinal/css/admin.css">
 </head>
 
 <body>
 	<?php if ($seguranca) { ?>
-		<div class="admin">
+		<div class="container">
+			<div class="admin">
 
-			<h1>Painel Adminstrativa do site</h1>
-			<h2>Bem vindo <?php echo $_SESSION['nome']; ?> ao painel do site!</h2>
-			<h3>Gerenciador de usuario</h3>
+				<h1>Painel Adminstrativa do site</h1>
+				<h2>Bem vindo <?php echo $_SESSION['nome']; ?> ao painel do site!</h2>
+				<h3>Gerenciador de usuario</h3>
 
+			</div>
 		</div>
-
-		<?php include "<layout/menu.php"; ?> 
+		<div class="container">
+			<?php include "<layout/menu.php"; ?>
+		</div>
 
 		<?php
 		$tabela = "users";
@@ -43,6 +46,7 @@ require_once "functions.php"; ?>
 			}
 		}
 		?>
+
 
 		<form action="" method="post">
 			<fieldset>
@@ -84,6 +88,7 @@ require_once "functions.php"; ?>
 				</tbody>
 			</table>
 		</div>
+
 	<?php } else {
 		header("location: paginaLogin.php");
 	} ?>

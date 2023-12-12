@@ -12,7 +12,7 @@ if (isset($_POST['update'])) {
 
 <head>
 	<title>Painel Admin - Cardapio</title>
-	<link rel="stylesheet" type="text/css" href="css/admin.css">
+	<link rel="stylesheet" type="text/css" href="/projetoFinal/css/admin.css">
 </head>
 
 <body>
